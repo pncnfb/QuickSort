@@ -1,0 +1,3 @@
+/Users/fabiopanc/CLionProjects/quickSort_project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/fabiopanc/CLionProjects/quickSort_project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/fabiopanc/CLionProjects/quickSort_project/cmake-build-debug/CMakeFiles/quickSort_project.dir
