@@ -3,4 +3,4 @@ project(quickSort_project C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(quickSort_project main.c mainMPI.c methods.h)
+add_executable(quickSort_project main.c methods.h)
