@@ -180,16 +180,16 @@ int main(int argc, char *argv[]) {
 
     // Uncomment for validation check
     /*if(rank==0){
-        printf("Checking.. \n");
+        printf("Validation \n");
         bool error = false;
         for(int i=0;i<SIZE-1;i++) {
             if (result[i] > result[i+1]){
                 error = true;
-                printf("error in i=%d \n", i);
+                printf("Error in i=%d \n", i);
             }
         }
         if(error)
-            printf("Error..Not sorted correctly\n");
+            printf("Error\n");
         else
             printf("Correct!\n");
 
