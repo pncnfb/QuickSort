@@ -5,77 +5,98 @@
 */
 
 #include <stdio.h>
-
-// Swap two elements
-void swap(int* a, int* b)
-{
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-/* This function takes last element as pivot, places
-the pivot element at its correct position in sorted
-array, and places all smaller (smaller than pivot)
-to left of pivot and all greater elements to right
-of pivot */
-int partition (int arr[], int low, int high)
-{
-    int pivot = arr[high]; // pivot
-    int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
-
-    for (int j = low; j <= high - 1; j++)
-    {
-        // If current element is smaller than the pivot
-        if (arr[j] < pivot)
-        {
-            i++; // increment index of smaller element
-            swap(&arr[i], &arr[j]);
-        }
-    }
-    swap(&arr[i + 1], &arr[high]);
-    printf("pivot: %d", arr[i+1]);
-    return (i + 1);
-}
-
-/* The main function that implements QuickSort
-arr[] --> Array to be sorted,
-low --> Starting index,
-high --> Ending index */
-void quickSort(int arr[], int low, int high)
-{
-    if (low < high)
-    {
-        /* pi is partitioning index, arr[p] is now
-        at right place */
-        int pi = partition(arr, low, high);
-
-        // Separately sort elements before
-        // partition and after partition
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
-
-/* Function to print an array */
-void printArray(int arr[], int size)
-{
-    int i;
-    for (i = 0; i < size; i++)
-        printf("%d ",arr[i]);
-
-
-}
+#include <stdlib.h>
+#include <sys/times.h>
+#include <time.h>
+#include "methods.h"
+#include "mpi.h"
+#define SIZE 1000000
 
 int main()
 {
-    int arr[] = {10, 7, 8, 9, 1, 5};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    quickSort(arr, 0, n - 1);
+    int *unsorted_array = (int *)malloc(SIZE * sizeof(int));
+    randomGenerator(unsorted_array, SIZE);
+
+
+    int n = SIZE;
+
+    double begin = MPI_Wtime();
+    //clock_t begin = MPI_Wtime();//clock();
+    quickSort(unsorted_array, 0, n - 1);
+    //clock_t end = MPI_Wtime();//clock();
+    double end = MPI_Wtime();
+    //double time_spent1 = (double)(end - begin) / CLOCKS_PER_SEC;
+    //printf( "Sorted array: ");
+    //printArray(array1, n);
+
+
+/*
+    // 2M samples
+    int* array2 = (int *) malloc(sizeof(int) * 2000000);
+    for (int i = 0; i < 2000000; i++)
+        array2[i] = rand()%2000000;
+
+
+    n = 2000000;
+
+    begin = clock();
+    quickSort(array2, 0, n - 1);
+    end = clock();
+    double time_spent2 = (double)(end - begin) / CLOCKS_PER_SEC;
+
     printf( "Sorted array: ");
-    printArray(arr, n);
+    //printArray(array2, n);
+*/
+    // 4M samples
+    /*  int* array3 = (int *) malloc(sizeof(int) * 1000000);
+      for (int i = 0; i < 4000000; i++)
+          array3[i] = rand()%4000000;
+
+
+      n = 4000000;//sizeof(array3) / sizeof(array3[0]);
+
+      begin = clock();
+      quickSort(array3, 0, n - 1);
+      end = clock();
+      double time_spent3 = (double)(end - begin) / CLOCKS_PER_SEC; */
+
+    //printf( "Sorted array: ");
+    //printArray(array3, n);
+
+    // 16M samples
+    /* int* array4 = (int *) malloc(sizeof(int) * 16000000);
+     for (int i = 0; i < 16000000; i++)
+         array4[i] = rand()%16000000;
+
+
+      n = 16000000;
+      begin = clock();
+     quickSort(array4, 0, n - 1);
+     end = clock();
+     double time_spent4 = (double)(end - begin) / CLOCKS_PER_SEC;*/
+
+    //printf( "Sorted array: ");
+    //printArray(array3, n);
+
+    //printf("\n Time (%d samples): %f", SIZE, time_spent1);
+    printf("\n Time (%d samples): %2.7f sec", SIZE, (end-begin));
+//    printf("\n Time (2M samples): %f", time_spent2);
+    //   printf("\n Time (4M samples): %f", time_spent3);
+// printf("\n Time (16M samples): %f", time_spent4);
+/*
+    FILE *fp;
+    int myInt = 5;
+    fp = fopen("Output.txt", "w");// "w" means that we are going to write on this file
+    fprintf(fp, "\n Time (1M samples): %f", time_spent1);
+    fprintf(fp, "\n Time (2M samples): %f", time_spent2);
+  //  fprintf(fp, "\n Time (4M samples): %f", time_spent3);
+   // fprintf(fp, "\n Time (16M samples): %f", time_spent4);
+    fclose(fp); //Don't forget to close the file when finished
+*/
     return 0;
 }
 
-
+/*
+ * con malloc vado ad allocare nell'heap e riesco a gestire grandi vettori
+ */
 
