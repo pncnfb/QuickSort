@@ -1,14 +1,14 @@
 # QuickSort
 
 ## Sequential QuickSort 
-Files related to the sequential implementation:
-  . main.c
-  . methods.h
-  . CMakeLists.txt
+/sequential folder contains:
+  * main.c
+  * CMakeLists.txt
 
 
-Parallel QuickSort
-Files related to the parallel implementation:
-  . mainMPI.c
-  . methods.h
-  . mainSLURM.slurm
+## Parallel QuickSort
+/parallel folder contains:
+  * mainMPI.c
+  * mainSLURM.slurm : compiles and runs the code for 1M, 2M, 4M and 16M  of instances
+
+* /include/methods.h, contains the fuctions shared between 'main.c' and 'mainMPI.c'
