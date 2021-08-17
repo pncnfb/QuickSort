@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <sys/times.h>
 #include <time.h>
-#include "include/methods.h"
+#include "../include/methods.h"
 #define SIZE 1000000
 
 int main()
